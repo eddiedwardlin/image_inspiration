@@ -2,7 +2,7 @@
 
 This a webapp that takes in a query and presents a list of potential images. Users can then like and dislike images that suit their design taste.
 
-Instructions
+### Instructions
 1. Create and activate virtual environment
 2. Install dependencies by running "pip install -r /backend/requirements.txt"
 3. Navigate into /backend and run "python manage.py runserver"
