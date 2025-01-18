@@ -55,7 +55,7 @@ function Home () {
     const getImages = async () => {
         try {
             const res = await axios.get("https://api.unsplash.com/search/photos", {
-                params: {query: query, per_page: 5}, // Limit to 5 due to free API tier
+                params: {query: query, per_page: 2}, // Limit to 5 due to free API tier
                 headers: {
                     Authorization: `Client-ID ${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}`,
                 },
@@ -66,38 +66,23 @@ function Home () {
         }
     }
 
-    // Update liked photos for current query
-    const addLike = (url: string) => {
+    // Update liked/disliked photos for current query
+    const addLikeDislike = (url: string, method: string) => {
+        const body = method === "like" ? { likes: [...likes, url] } : { dislikes: [...dislikes, url] };
+
         api
-            .patch(`images/image-query/update/${id}/`, {
-                query: query,
-                likes: [...likes, url],
-                dislikes: dislikes,
-            })
+            .patch(`images/image-query/update/${id}/`, body)
             .then(() => getImageQueries())
             .catch((err) => console.log(err));
-    }
-
-    // Update disliked photos for current query
-    const addDislike = (url: string) => {
-        api
-            .patch(`images/image-query/update/${id}/`, {
-                query: query,
-                likes: likes,
-                dislikes: [...dislikes, url],
-            })
-            .then(() => getImageQueries())
-            .catch((err) => console.log(err));
-
     }
 
     // Record like or dislike after swipe
     const onSwipe = (direction: string, url: string) => {
         if (direction == "right") {
-            addLike(url);
+            addLikeDislike(url, "like");
             setLikes(prevLikes => [...prevLikes, url])
         } else if (direction == "left") {
-            addDislike(url);
+            addLikeDislike(url, "dislike");
             setDislikes(prevDislikes => [...prevDislikes, url])
         }
     }

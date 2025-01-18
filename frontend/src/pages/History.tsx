@@ -20,8 +20,8 @@ function History () {
             <Row>
                 {showLikes && (data.likes.length > 0 ? (
                     data.likes.map((url: string) => (
-                        <Col md={3} className="d-flex justify-content-center align-items-center">
-                            <Image key={url} className="image" src={url} rounded />
+                        <Col key={url} md={3} className="d-flex justify-content-center align-items-center">
+                            <Image className="image" src={url} rounded />
                         </Col>
                     ))
                 ) : (
@@ -31,8 +31,8 @@ function History () {
                 ))}
                 {!showLikes && (data.dislikes.length > 0 ? (
                     data.dislikes.map((url: string) => (
-                        <Col md={3} className="d-flex justify-content-center align-items-center">
-                            <Image key={url} className="image" src={url} rounded />
+                        <Col key={url} md={3} className="d-flex justify-content-center align-items-center">
+                            <Image className="image" src={url} rounded />
                         </Col>
                     ))
                 ) : (
