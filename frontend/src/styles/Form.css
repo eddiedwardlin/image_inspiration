@@ -1,0 +1,17 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 50px auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    max-width: 400px;
+}
+
+
+.form-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

@@ -3,9 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import Detail from "./pages/Detail";
+import History from "./pages/History";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
+import './styles/App.css'
 
 function Logout() {
   localStorage.clear();
@@ -30,10 +31,10 @@ function App() {
           }
         />
         <Route
-          path="/detail"
+          path="/history"
           element={
             <ProtectedRoute>
-              <Detail />
+              <History />
             </ProtectedRoute>
           }
         />
